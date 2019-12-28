@@ -1,6 +1,13 @@
 package com.lisz.controller;
 
-public class ResponseStatus {
+import java.io.Serializable;
+
+public class ResponseStatus implements Serializable {
+	/**
+	 * 注意：Dubbo项目的话，服务提供者返回的类必须实现Serializable接口，否则会重试三次，每次开启一个新线程，
+	 * 如果是插入操作，第二次的时候就报错了，因为有的column可能规定不能重复：unique
+	 */
+	private static final long serialVersionUID = 4944669278298801979L;
 	private int code;
 	private String message;
 	private String data; // JSON
